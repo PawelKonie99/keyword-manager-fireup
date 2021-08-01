@@ -1,24 +1,21 @@
-import { TableS } from "./MainTableStyles";
-import { TheadS } from "./MainTableStyles";
-import { TbodyS } from "./MainTableStyles";
-import { TrS } from "./MainTableStyles";
-import { TdS } from "./MainTableStyles";
-import { ThS } from "./MainTableStyles";
+import { TableS, TheadS, TbodyS, TrS, TdS, ThS } from "./MainTableStyles";
 import { Item } from "../Item/Item";
+import { AddButton } from "../AddItemButton/AddItemButton";
 
 export const MainTable = () => {
   return (
     <TableS>
       <TheadS>
         <TrS>
-          <ThS>Header content 1</ThS>
-          <ThS about="3rem">Header content 2</ThS>
+          <ThS borderValue="2px">Header content 1</ThS>
+          <ThS paddingValue="3rem">Header content 2</ThS>
+          <ThS></ThS>
         </TrS>
       </TheadS>
       <TbodyS>
         <TrS>
-          <TdS>Body content 1</TdS>
-          <TdS about="flex">
+          <TdS borderValue="2px">Body content 1</TdS>
+          <TdS itemProp="flex">
             <Item text="Body content 2"></Item>
             <Item text="Body content 2"></Item>
             <Item text="Body content 2"></Item>
@@ -26,12 +23,18 @@ export const MainTable = () => {
             <Item text="Body content 2"></Item>
             <Item text="Body content 2"></Item>
           </TdS>
+          <TdS>
+            <AddButton />
+          </TdS>
         </TrS>
       </TbodyS>
       <TbodyS>
         <TrS>
-          <TdS>Body content 3</TdS>
-          <TdS>Body content 4</TdS>
+          <TdS borderValue="2px">Body content 3</TdS>
+          <Item text="Body content 4"></Item>
+          <TdS>
+            <AddButton />
+          </TdS>
         </TrS>
       </TbodyS>
     </TableS>
