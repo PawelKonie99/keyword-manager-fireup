@@ -1,16 +1,14 @@
 import { Layout } from "./layout/Layout";
 import { Item } from "./components/Item/Item";
-import { MainTable } from "./components/MainTable/MainTable";
+import { MainPage } from "./pages/MainPage";
+import { getAll } from "./services/getAllData";
+import { useEffect } from "react";
 
 function App() {
   return (
     <Layout>
       <div className="App">
-        <header className="App-header"></header>
-        <Item text={"test"}></Item>
-        <Item text={"Audi"}></Item>
-        <Item text={"Audi"}></Item>
-        <MainTable></MainTable>
+        <MainPage></MainPage>
       </div>
     </Layout>
   );

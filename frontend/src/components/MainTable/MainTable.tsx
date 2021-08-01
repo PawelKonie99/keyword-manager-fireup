@@ -1,8 +1,24 @@
 import { TableS, TheadS, TbodyS, TrS, TdS, ThS } from "./MainTableStyles";
 import { Item } from "../Item/Item";
 import { AddButton } from "../AddItemButton/AddItemButton";
+import { useEffect, useState } from "react";
+import { getAll } from "../../services/getAllData";
 
 export const MainTable = () => {
+  //to remove
+  const [test, setTest] = useState<any>();
+
+  useEffect(() => {
+    fetchTest();
+  }, []);
+
+  const fetchTest = async (): Promise<void> => {
+    const test: any = await getAll();
+    setTest(test);
+  };
+  console.log(test);
+  //
+
   return (
     <TableS>
       <TheadS>
