@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Itheme } from "../../utils/theme";
 
 export const CategoryButtonS = styled.button`
-  margin-bottom: 0.8rem;
   cursor: pointer;
   border: none;
   padding: 0.4rem 1.5rem;
