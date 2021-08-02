@@ -14,33 +14,33 @@ export const data: Category[] = [
     categoryName: "cars",
     keywords: [
       {
-        id: "1",
+        id: "3",
         keywordName: "audi",
       },
       {
-        id: "2",
+        id: "4",
         keywordName: "renault",
       },
       {
-        id: "3",
+        id: "5",
         keywordName: "opel",
       },
     ],
   },
   {
-    id: "4",
+    id: "6",
     categoryName: "fruits",
     keywords: [
       {
-        id: "5",
+        id: "7",
         keywordName: "apple",
       },
       {
-        id: "6",
+        id: "8",
         keywordName: "banana",
       },
       {
-        id: "7",
+        id: "9",
         keywordName: "strawberry",
       },
     ],
