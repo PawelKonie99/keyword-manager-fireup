@@ -1,4 +1,3 @@
-export {};
 import * as router from "express";
 import axios from "axios";
 export const categoryRouter = router.Router();
@@ -30,24 +29,22 @@ categoryRouter.put("/addcategory", async (req, res) => {
       error: "Missing category name",
     });
   }
-  const uniqueId = uuidv4();
   const result: Iroot = await axios.get(`https://api.datamuse.com/words?ml=${body.newCategory}&max=10`);
 
   data.push({
-    id: uniqueId,
+    id: uuidv4(),
     categoryName: body.newCategory,
     keywords: result.data.map((value) => {
       return {
-        id: uniqueId,
+        id: uuidv4(),
         keywordName: value.word,
       };
     }),
   });
-  console.log(data);
   res.json(result.data);
 });
 
-categoryRouter.delete("/delete/:id", async (req, res) => {
+categoryRouter.delete("/deletecategory/:id", async (req, res) => {
   const id = req.params.id;
   const dataLength = data.length;
 
@@ -63,6 +60,4 @@ categoryRouter.delete("/delete/:id", async (req, res) => {
       error: "Error while removing category",
     });
   }
-
-  console.log(data);
 });
