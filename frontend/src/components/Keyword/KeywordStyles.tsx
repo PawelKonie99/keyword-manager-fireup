@@ -3,7 +3,7 @@ import { Itheme } from "../../utils/theme";
 
 export const KeywordS = styled.button`
   padding: 0.4rem 1rem;
-  margin: 0.5rem 0.5rem 0rem 0.5rem;
+  margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   background-color: ${({ theme }: { theme: Itheme }) => theme.colors.yellow};
   color: ${({ theme }: { theme: Itheme }) => theme.colors.darkBlue};
   border: none;

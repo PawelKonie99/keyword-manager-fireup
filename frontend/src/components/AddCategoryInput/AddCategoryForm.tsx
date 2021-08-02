@@ -6,7 +6,7 @@ import { FormS, LabelS, InputS } from "./AddCategoryFormStyles";
 export {};
 
 //todo dodac typy
-export const AddCategoryForm = ({ controlCategory, setControlCategory }: any) => {
+export const AddCategoryForm = ({ control, setControl }: any) => {
   const [newCategory, setNewCategory] = useState("");
 
   const handleInputText = (event: EventTarget & HTMLInputElement) => {
@@ -16,7 +16,7 @@ export const AddCategoryForm = ({ controlCategory, setControlCategory }: any) =>
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     await putNewCategory(newCategory);
-    setControlCategory(controlCategory + 1);
+    setControl(control + 1);
     setNewCategory("");
   };
 
