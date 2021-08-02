@@ -1,5 +1,5 @@
 import axios from "axios";
-const newCategoryUri = "/delete/";
+const newCategoryUri = "/deletecategory/";
 
 //todo make interface
 export const deleteCategory = async (categoryId: string) => {

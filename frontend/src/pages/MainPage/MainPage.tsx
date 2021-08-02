@@ -4,14 +4,14 @@ import { useState } from "react";
 import { ContainerS, DivS } from "./MainPageStyles";
 
 export const MainPage = () => {
-  const [controlCategory, setControlCategory] = useState(1);
+  const [control, setControl] = useState(1);
 
   return (
     <ContainerS>
       <DivS>
-        <AddCategoryForm controlCategory={controlCategory} setControlCategory={setControlCategory} />
+        <AddCategoryForm control={control} setControl={setControl} />
       </DivS>
-      <MainTable controlCategory={controlCategory} setControlCategory={setControlCategory} />
+      <MainTable control={control} setControl={setControl} />
     </ContainerS>
   );
 };
