@@ -1,13 +1,13 @@
 import * as express from "express";
 import * as cors from "cors";
 import { unknownRequest } from "./middlewares/unknowRequest";
-import { elementsRouter } from "./controllers/elements";
+import { categoryRouter } from "./controllers/category";
 const app = express();
 
 app.use(cors());
 app.use(express.static("build"));
 app.use(express.json());
-app.use("/", elementsRouter);
+app.use("/", categoryRouter);
 // app.use("/", usersRouter);
 // app.use("/", loginRouter);
 
