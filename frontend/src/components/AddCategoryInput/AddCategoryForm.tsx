@@ -1,18 +1,22 @@
 import { useState } from "react";
+import { putNewCategory } from "../../services/putNewCategory";
 import { AddCategory } from "../AddCategoryButton/AddCategoryButton";
 import { FormS, LabelS, InputS } from "./AddCategoryFormStyles";
 
 export {};
 
-export const AddCategoryForm = () => {
+//todo dodac typy
+export const AddCategoryForm = ({ controlCategory, setControlCategory }: any) => {
   const [newCategory, setNewCategory] = useState("");
 
   const handleInputText = (event: EventTarget & HTMLInputElement) => {
     setNewCategory(event.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    await putNewCategory(newCategory);
+    setControlCategory(controlCategory + 1);
     setNewCategory("");
   };
 
