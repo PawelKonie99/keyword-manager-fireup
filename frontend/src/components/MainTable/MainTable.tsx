@@ -1,58 +1,48 @@
 import { TableS, TheadS, TbodyS, TrS, TdS, ThS } from "./MainTableStyles";
-import { Item } from "../Item/Item";
+import { Keyword } from "../Keyword/Keyword";
 import { AddButton } from "../AddItemButton/AddItemButton";
 import { useEffect, useState } from "react";
 import { getAll } from "../../services/getAllData";
+import { Category } from "../../interfaces/category";
 
 export const MainTable = () => {
-  //to remove
-  const [test, setTest] = useState<any>();
+  const [content, setContent] = useState<Category[]>();
 
   useEffect(() => {
-    fetchTest();
+    getContent();
   }, []);
 
-  const fetchTest = async (): Promise<void> => {
-    const test: any = await getAll();
-    setTest(test);
+  const getContent = async (): Promise<void> => {
+    const data = await getAll();
+    setContent(data.data);
   };
-  console.log(test);
-  //
 
   return (
     <TableS>
       <TheadS>
         <TrS>
-          <ThS borderValue="2px">Header content 1</ThS>
-          <ThS paddingValue="3rem">Header content 2</ThS>
+          <ThS borderValue="2px">Categories</ThS>
+          <ThS paddingValue="3rem">Keywords</ThS>
           <ThS></ThS>
         </TrS>
       </TheadS>
-      <TbodyS>
-        <TrS>
-          <TdS borderValue="2px">Body content 1</TdS>
-          <TdS itemProp="flex">
-            <Item text="Body content 2"></Item>
-            <Item text="Body content 2"></Item>
-            <Item text="Body content 2"></Item>
-            <Item text="Body content 2"></Item>
-            <Item text="Body content 2"></Item>
-            <Item text="Body content 2"></Item>
-          </TdS>
-          <TdS>
-            <AddButton />
-          </TdS>
-        </TrS>
-      </TbodyS>
-      <TbodyS>
-        <TrS>
-          <TdS borderValue="2px">Body content 3</TdS>
-          <Item text="Body content 4"></Item>
-          <TdS>
-            <AddButton />
-          </TdS>
-        </TrS>
-      </TbodyS>
+      {content?.map((category) => (
+        <TbodyS>
+          <TrS>
+            <TdS borderValue="2px">{category.categoryName}</TdS>
+            <TdS itemProp="flex">
+              {category.keywords?.map((keyword) => (
+                <>
+                  <Keyword text={keyword.keywordName}></Keyword>
+                </>
+              ))}
+            </TdS>
+            <TdS>
+              <AddButton />
+            </TdS>
+          </TrS>
+        </TbodyS>
+      ))}
     </TableS>
   );
 };

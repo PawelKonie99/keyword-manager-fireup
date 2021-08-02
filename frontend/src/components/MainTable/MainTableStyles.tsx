@@ -6,6 +6,7 @@ export const TableS = styled.table`
   color: ${({ theme }: { theme: Itheme }) => theme.colors.darkBlue};
   border-collapse: collapse;
   max-width: 1024px;
+  width: 100%;
   border-radius: 5px;
 `;
 
