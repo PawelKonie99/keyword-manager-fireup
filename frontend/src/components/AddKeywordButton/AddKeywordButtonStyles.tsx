@@ -16,3 +16,7 @@ export const ButtonS = styled.button`
   border: none;
   margin: 0.5rem;
 `;
+
+export const DivS = styled.div`
+  margin: 0rem 1rem 0rem 0rem;
+`;
