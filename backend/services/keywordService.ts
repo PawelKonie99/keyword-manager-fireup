@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { InewKeyword } from "../interfaces/serviceInterface";
 
 export const addNewKeyword = (body: InewKeyword) => {
-  console.log(body.newKeyword);
   if (body.newKeyword === "" || body.newKeyword === undefined) {
     return {
       error: "Missing keyword name",
