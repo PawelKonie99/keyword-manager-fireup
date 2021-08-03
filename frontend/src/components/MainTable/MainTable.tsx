@@ -1,13 +1,12 @@
 import { TableS, TheadS, TbodyS, TrS, TdS, ThS } from "./MainTableStyles";
 import { Keyword } from "../Keyword/Keyword";
-import { AddButton } from "../AddItemButton/AddItemButton";
 import { useEffect, useState } from "react";
 import { getAll } from "../../services/getAllData";
 import { Category } from "../../interfaces/category";
-import { putNewCategory } from "../../services/putNewCategory";
 import { deleteCategory } from "../../services/deleteCategory";
 import { deleteKeyword } from "../../services/deleteKeyword";
-// import { AddCategory } from "../AddCategoryButton/AddCategoryButton";
+import { AddKeywordForm } from "../AddKeywordForm/AddKeywordForm";
+import { postNewKeyword } from "../../services/postNewKeyword";
 
 export const MainTable = ({ control, setControl }: any) => {
   const [content, setContent] = useState<Category[]>();
@@ -44,18 +43,22 @@ export const MainTable = ({ control, setControl }: any) => {
       {content?.map((category) => (
         <TbodyS key={category.id}>
           <TrS>
-            <TdS borderValue="2px" onClick={() => handleRemoveCategory(category.id)}>
+            <TdS cursorValue="pointer" borderValue="2px" onClick={() => handleRemoveCategory(category.id)}>
               {category.categoryName}
             </TdS>
             <TdS itemProp="flex">
               {category.keywords?.map((keyword) => (
                 <>
-                  <Keyword text={keyword.keywordName} onClick={() => handleRemoveKeyword(keyword.id)} />
+                  <Keyword
+                    key={keyword.id}
+                    text={keyword.keywordName}
+                    onClick={() => handleRemoveKeyword(keyword.id)}
+                  />
                 </>
               ))}
             </TdS>
             <TdS>
-              <AddButton />
+              <AddKeywordForm categoryId={category.id} control={control} setControl={setControl} />
             </TdS>
           </TrS>
         </TbodyS>

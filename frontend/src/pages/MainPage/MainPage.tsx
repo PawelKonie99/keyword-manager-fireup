@@ -1,5 +1,5 @@
 import { MainTable } from "../../components/MainTable/MainTable";
-import { AddCategoryForm } from "../../components/AddCategoryInput/AddCategoryForm";
+import { AddCategoryForm } from "../../components/AddCategoryForm/AddCategoryForm";
 import { useState } from "react";
 import { ContainerS, DivS } from "./MainPageStyles";
 

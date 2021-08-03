@@ -30,11 +30,11 @@ export const TrS = styled.tr`
   color: ${({ theme }: { theme: Itheme }) => theme.colors.white};
 `;
 
-export const TdS = styled.td<{ borderValue?: string }>`
+export const TdS = styled.td<{ borderValue?: string; cursorValue?: string }>`
   display: ${(props) => (props.itemProp ? props.itemProp : "table-cell")};
   flex-wrap: wrap;
   border-right: ${(props) => (props.borderValue ? props.borderValue : "0px")} solid white;
   text-align: center;
   font-size: 1.4rem;
-  cursor: pointer;
+  cursor: ${(props) => (props.cursorValue ? props.cursorValue : "")};
 `;
