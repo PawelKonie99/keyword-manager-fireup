@@ -1,63 +1,15 @@
 import * as router from "express";
-import axios from "axios";
 export const categoryRouter = router.Router();
-import { v4 as uuidv4 } from "uuid";
-import { data } from "../allData";
-
-export interface Iroot {
-  data: [
-    {
-      word: string;
-      score: number;
-      tags?: string[] | null;
-    }
-  ];
-}
-
-export interface InewCategory {
-  newCategory: string;
-}
+import { addCategory, getAllCategories, removeCategory } from "../services/categoryService";
 
 categoryRouter.get("/data", async (req, res) => {
-  res.json(data);
+  return res.json(getAllCategories());
 });
 
-categoryRouter.put("/addcategory", async (req, res) => {
-  const body: InewCategory = req.body;
-  if (body.newCategory === "") {
-    return res.status(400).json({
-      error: "Missing category name",
-    });
-  }
-  const result: Iroot = await axios.get(`https://api.datamuse.com/words?ml=${body.newCategory}&max=10`);
-
-  data.push({
-    id: uuidv4(),
-    categoryName: body.newCategory,
-    keywords: result.data.map((value) => {
-      return {
-        id: uuidv4(),
-        keywordName: value.word,
-      };
-    }),
-  });
-  res.json(result.data);
+categoryRouter.post("/addcategory", async (req, res) => {
+  return res.send(await addCategory(req.body));
 });
 
 categoryRouter.delete("/deletecategory/:id", async (req, res) => {
-  const id = req.params.id;
-  const dataLength = data.length;
-
-  const index = data.findIndex((x) => x.id === id);
-  if (index !== undefined) data.splice(index, 1);
-
-  if (data.length < dataLength) {
-    res.status(200).json({
-      info: "Category successfully removed",
-    });
-  } else {
-    res.status(400).json({
-      error: "Error while removing category",
-    });
-  }
+  return res.send(await removeCategory(req.params.id));
 });
