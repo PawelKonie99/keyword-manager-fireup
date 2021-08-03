@@ -11,5 +11,5 @@ categoryRouter.post("/addcategory", async (req, res) => {
 });
 
 categoryRouter.delete("/deletecategory/:id", async (req, res) => {
-  return res.send(await removeCategory(req.params.id));
+  return res.send(removeCategory(req.params.id));
 });

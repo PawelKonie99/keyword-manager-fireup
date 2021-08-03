@@ -25,10 +25,10 @@ export const addCategory = async (body: InewCategory) => {
       };
     }),
   });
-  return { info: "Category add successfully" };
+  return { info: "Category added successfully" };
 };
 
-export const removeCategory = async (categoryId: string) => {
+export const removeCategory = (categoryId: string) => {
   const dataLength = data.length;
 
   const index = data.findIndex((x) => x.id === categoryId);
