@@ -1,12 +1,4 @@
-export interface Category {
-  id: string;
-  categoryName: string;
-  keywords: KeywordsEntity[];
-}
-export interface KeywordsEntity {
-  id: string;
-  keywordName: string;
-}
+import { Category } from "./interfaces/allDataInterfaces";
 
 export const data: Category[] = [
   {

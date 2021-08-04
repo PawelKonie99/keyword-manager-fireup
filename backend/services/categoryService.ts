@@ -2,19 +2,22 @@ import axios from "axios";
 import { data } from "../allData";
 import { ImuseApi, InewCategory } from "../interfaces/categoryInterfaces";
 import { v4 as uuidv4 } from "uuid";
+import { Category } from "../interfaces/allDataInterfaces";
+import { IloggerError } from "../interfaces/loggerInterfaces";
 
 export const getAllCategories = () => {
   return data;
 };
 
-export const addCategory = async ({ categoryName }: InewCategory) => {
+export const addCategory = async ({ categoryName }: InewCategory): Promise<Category | IloggerError> => {
   if (categoryName === "") {
     return {
       error: "Missing category name",
     };
   }
   const result: ImuseApi = await axios.get(`https://api.datamuse.com/words?ml=${categoryName}&max=10`);
-  data.push({
+
+  const newCategory: Category = {
     id: uuidv4(),
     categoryName,
     keywords: result.data.map((item) => {
@@ -23,8 +26,10 @@ export const addCategory = async ({ categoryName }: InewCategory) => {
         keywordName: item.word,
       };
     }),
-  });
-  return { info: "Category added successfully" };
+  };
+  data.push(newCategory);
+
+  return newCategory;
 };
 
 export const removeCategory = (categoryId: string) => {
