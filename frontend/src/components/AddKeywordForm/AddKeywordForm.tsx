@@ -4,8 +4,8 @@ import { FormS } from "./AddKeywordFormStyles";
 import { AddInput } from "../AddInput/AddInput";
 import { colors } from "../../utils/colors";
 import { postNewKeyword } from "../../services/postNewKeyword";
-import { Category } from "../../interfaces/categoryInterfaces";
 import { IaddKeyword } from "../../interfaces/keywordInterfaces";
+import { setKeywords } from "../../helpers/setKeywords";
 
 export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword) => {
   const [keywordName, setKeywordName] = useState("");
@@ -16,13 +16,11 @@ export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newKeyword = await postNewKeyword(keywordName, categoryId);
+    const newKeywords = await postNewKeyword(keywordName, categoryId);
 
-    if (newKeyword) {
-      const copiedState = JSON.parse(JSON.stringify(content));
-      const properCategory = copiedState.find((category: Category) => category.id === categoryId);
-      properCategory?.keywords.push(newKeyword);
-      setContent(copiedState);
+    if (newKeywords) {
+      const newContent = setKeywords(content, categoryId, newKeywords);
+      setContent(newContent);
     }
     setKeywordName("");
   };

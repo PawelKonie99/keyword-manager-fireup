@@ -1,8 +1,8 @@
 import axios from "axios";
-const deleteKeywordUri = "/deletekeyword/";
+import { Keyword } from "../interfaces/categoryInterfaces";
+const deleteKeywordUri = "/deletekeyword";
 
-//todo make interface
-export const deleteKeyword = async (keywordId: string): Promise<string> => {
-  const { data } = await axios.delete(`${deleteKeywordUri}${keywordId}`);
-  return data.toString();
+export const deleteKeyword = async (keywordId: string, categoryId: string): Promise<Keyword[]> => {
+  const { data } = await axios.delete(deleteKeywordUri, { data: { keywordId, categoryId } });
+  return data;
 };

@@ -8,28 +8,24 @@ import { AddCategoryForm } from "../AddCategoryForm/AddCategoryForm";
 import { ContainerS } from "../../pages/MainPage/MainPageStyles";
 import { Icontent } from "../../interfaces/contentInterfaces";
 import { Category } from "../../interfaces/categoryInterfaces";
+import { setKeywords } from "../../helpers/setKeywords";
 
 export const MainTable = ({ content, setContent }: Icontent) => {
   const handleRemoveCategory = async (categoryId: string) => {
     const responseId = await deleteCategory(categoryId);
+
     const copiedState = JSON.parse(JSON.stringify(content));
-    const categoryIndex = copiedState.findIndex((category: Category) => category.id === responseId);
-    if (categoryIndex !== -1) copiedState.splice(categoryIndex, 1);
-    setContent(copiedState);
+    const newCategories = copiedState.filter((category: Category) => category.id !== responseId);
+    setContent(newCategories);
   };
 
-  const handleRemoveKeyword = async (keywordId: string) => {
-    const responseId = await deleteKeyword(keywordId);
-    const copiedState = JSON.parse(JSON.stringify(content));
+  const handleRemoveKeyword = async (keywordId: string, categoryId: string) => {
+    const newKeywords = await deleteKeyword(keywordId, categoryId);
 
-    copiedState.forEach((category: Category) => {
-      const index = category.keywords.findIndex((x) => x.id === responseId);
-      if (index !== -1) {
-        category.keywords.splice(index, 1);
-        return;
-      }
-    });
-    setContent(copiedState);
+    if (newKeywords) {
+      const newContent = setKeywords(content, categoryId, newKeywords);
+      setContent(newContent);
+    }
   };
 
   return (
@@ -53,7 +49,7 @@ export const MainTable = ({ content, setContent }: Icontent) => {
               </TdS>
               <TdS itemProp="flex">
                 {category.keywords.map(({ id, keywordName }) => (
-                  <Keyword key={id} text={keywordName} onClick={() => handleRemoveKeyword(id)} />
+                  <Keyword key={id} text={keywordName} onClick={() => handleRemoveKeyword(id, category.id)} />
                 ))}
               </TdS>
               <TdS>
