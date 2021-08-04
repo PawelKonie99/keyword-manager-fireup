@@ -1,8 +1,8 @@
 import axios from "axios";
+import { Keyword } from "../interfaces/categoryInterfaces";
 const newKeywordUri = "/addkeyword";
 
-//todo make interface
-export const postNewKeyword = async (keywordName: string, categoryId: string) => {
-  const request = await axios.post(newKeywordUri, { keywordName: keywordName, categoryId });
-  return request.data;
+export const postNewKeyword = async (keywordName: string, categoryId: string): Promise<Keyword> => {
+  const { data } = await axios.post(newKeywordUri, { keywordName: keywordName, categoryId });
+  return data;
 };

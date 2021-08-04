@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Category } from "../interfaces/category";
+import { Category } from "../interfaces/categoryInterfaces";
 
 const allDataUri = "/data";
 
