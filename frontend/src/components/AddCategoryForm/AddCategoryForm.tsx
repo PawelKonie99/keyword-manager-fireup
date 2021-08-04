@@ -6,7 +6,7 @@ import { AddInput } from "../AddInput/AddInput";
 import colors from "../../utils/colors";
 
 //todo dodac typy
-export const AddCategoryForm = ({ control, setControl }: any) => {
+export const AddCategoryForm = ({ content, setContent }: any) => {
   const [categoryName, newCategoryName] = useState("");
 
   const handleInputText = (event: EventTarget & HTMLInputElement) => {
@@ -15,8 +15,8 @@ export const AddCategoryForm = ({ control, setControl }: any) => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await postNewCategory(categoryName);
-    setControl(control + 1);
+    const newCategory = await postNewCategory(categoryName);
+    setContent(content.concat(newCategory));
     newCategoryName("");
   };
 

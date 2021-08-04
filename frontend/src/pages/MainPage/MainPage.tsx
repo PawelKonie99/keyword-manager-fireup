@@ -1,17 +1,19 @@
 import { MainTable } from "../../components/MainTable/MainTable";
-import { AddCategoryForm } from "../../components/AddCategoryForm/AddCategoryForm";
-import { useState } from "react";
-import { ContainerS, DivS } from "./MainPageStyles";
+import { useEffect, useState } from "react";
+import { Category } from "../../interfaces/category";
+import { getAll } from "../../services/getAllData";
 
 export const MainPage = () => {
-  const [control, setControl] = useState(1);
+  const [content, setContent] = useState<Category[]>([]);
 
-  return (
-    <ContainerS>
-      <DivS>
-        <AddCategoryForm control={control} setControl={setControl} />
-      </DivS>
-      <MainTable control={control} setControl={setControl} />
-    </ContainerS>
-  );
+  useEffect(() => {
+    getContent();
+  }, []);
+
+  const getContent = async (): Promise<void> => {
+    const { data } = await getAll();
+    setContent(data);
+  };
+
+  return <MainTable content={content} setContent={setContent} />;
 };
