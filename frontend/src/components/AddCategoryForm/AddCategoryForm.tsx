@@ -4,19 +4,23 @@ import { AddCategory } from "../AddCategoryButton/AddCategoryButton";
 import { FormS } from "./AddCategoryFormStyles";
 import { AddInput } from "../AddInput/AddInput";
 import colors from "../../utils/colors";
+import { Icontent } from "../../interfaces/contentInterfaces";
 
 //todo dodac typy
-export const AddCategoryForm = ({ content, setContent }: any) => {
+export const AddCategoryForm = ({ content, setContent }: Icontent) => {
   const [categoryName, newCategoryName] = useState("");
 
-  const handleInputText = (event: EventTarget & HTMLInputElement) => {
-    newCategoryName(event.value);
+  const handleInputText = ({ value }: EventTarget & HTMLInputElement) => {
+    newCategoryName(value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newCategory = await postNewCategory(categoryName);
-    setContent(content.concat(newCategory));
+
+    if (newCategory) {
+      setContent(content.concat(newCategory));
+    }
     newCategoryName("");
   };
 

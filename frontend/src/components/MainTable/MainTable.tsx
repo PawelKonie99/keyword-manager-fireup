@@ -1,35 +1,34 @@
 import { TableS, TheadS, TbodyS, TrS, TdS, ThS } from "./MainTableStyles";
 import { Keyword } from "../Keyword/Keyword";
-import { useEffect, useState } from "react";
-import { getAll } from "../../services/getAllData";
-import { Category } from "../../interfaces/category";
 import { deleteCategory } from "../../services/deleteCategory";
 import { deleteKeyword } from "../../services/deleteKeyword";
 import { AddKeywordForm } from "../AddKeywordForm/AddKeywordForm";
 import { DivS } from "../../pages/MainPage/MainPageStyles";
 import { AddCategoryForm } from "../AddCategoryForm/AddCategoryForm";
 import { ContainerS } from "../../pages/MainPage/MainPageStyles";
+import { Icontent } from "../../interfaces/contentInterfaces";
+import { Category } from "../../interfaces/categoryInterfaces";
 
-export const MainTable = ({ control, setControl }: any) => {
-  const [content, setContent] = useState<Category[]>([]);
-
-  useEffect(() => {
-    getContent();
-  }, [control]);
-
-  const getContent = async (): Promise<void> => {
-    const { data } = await getAll();
-    setContent(data);
-  };
-
+export const MainTable = ({ content, setContent }: Icontent) => {
   const handleRemoveCategory = async (categoryId: string) => {
-    await deleteCategory(categoryId);
-    setControl(control + 1);
+    const responseId = await deleteCategory(categoryId);
+    const copiedState = JSON.parse(JSON.stringify(content));
+    const categoryIndex = copiedState.findIndex((category: Category) => category.id === responseId);
+    if (categoryIndex !== -1) copiedState.splice(categoryIndex, 1);
+    setContent(copiedState);
   };
 
   const handleRemoveKeyword = async (keywordId: string) => {
-    await deleteKeyword(keywordId);
-    setControl(control + 1);
+    const responseId = await deleteKeyword(keywordId);
+    const copiedState = JSON.parse(JSON.stringify(content));
+
+    copiedState.forEach((category: Category) => {
+      const index = category.keywords.findIndex((x) => x.id === responseId);
+      if (index !== -1) {
+        category.keywords.splice(index, 1);
+      }
+    });
+    setContent(copiedState);
   };
 
   return (
@@ -45,19 +44,19 @@ export const MainTable = ({ control, setControl }: any) => {
             <ThS />
           </TrS>
         </TheadS>
-        {content.map(({ id, categoryName, keywords }) => (
-          <TbodyS key={id}>
+        {content.map((category) => (
+          <TbodyS key={category.id}>
             <TrS>
-              <TdS cursorValue="pointer" borderValue="2px" onClick={() => handleRemoveCategory(id)}>
-                {categoryName}
+              <TdS cursorValue="pointer" borderValue="2px" onClick={() => handleRemoveCategory(category.id)}>
+                {category.categoryName}
               </TdS>
               <TdS itemProp="flex">
-                {keywords.map(({ id, keywordName }) => (
+                {category.keywords.map(({ id, keywordName }) => (
                   <Keyword key={id} text={keywordName} onClick={() => handleRemoveKeyword(id)} />
                 ))}
               </TdS>
               <TdS>
-                <AddKeywordForm categoryId={id} control={control} setControl={setControl} />
+                <AddKeywordForm categoryId={category.id} content={content} setContent={setContent} />
               </TdS>
             </TrS>
           </TbodyS>

@@ -4,19 +4,31 @@ import { FormS } from "./AddKeywordFormStyles";
 import { AddInput } from "../AddInput/AddInput";
 import { colors } from "../../utils/colors";
 import { postNewKeyword } from "../../services/postNewKeyword";
+import { Icontent } from "../../interfaces/contentInterfaces";
+import { Category } from "../../interfaces/categoryInterfaces";
+
+interface IaddKeyword extends Icontent {
+  categoryId: string;
+}
 
 //todo add interafce
-export const AddKeywordForm = ({ categoryId, control, setControl }: any) => {
+export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword) => {
   const [keywordName, setKeywordName] = useState("");
 
-  const handleInputText = (event: EventTarget & HTMLInputElement) => {
-    setKeywordName(event.value);
+  const handleInputText = ({ value }: EventTarget & HTMLInputElement) => {
+    setKeywordName(value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await postNewKeyword(keywordName, categoryId);
-    setControl(control + 1);
+    const newKeyword = await postNewKeyword(keywordName, categoryId);
+
+    if (newKeyword) {
+      const copiedState = JSON.parse(JSON.stringify(content));
+      const properCategory = copiedState.find((category: Category) => category.id === categoryId);
+      properCategory?.keywords.push(newKeyword);
+      setContent(copiedState);
+    }
     setKeywordName("");
   };
 
