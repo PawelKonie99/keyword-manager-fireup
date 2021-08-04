@@ -3,7 +3,6 @@ import { data } from "../allData";
 import { ImuseApi, InewCategory } from "../interfaces/categoryInterfaces";
 import { v4 as uuidv4 } from "uuid";
 import { Category } from "../interfaces/allDataInterfaces";
-import { IloggerError } from "../interfaces/loggerInterfaces";
 import { error, info } from "../logger/logger";
 
 export const getAllCategories = () => {

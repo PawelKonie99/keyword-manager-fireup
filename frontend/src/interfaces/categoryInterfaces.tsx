@@ -7,3 +7,7 @@ export interface Keyword {
   id: string;
   keywordName: string;
 }
+
+export interface Idata {
+  data: Category[];
+}

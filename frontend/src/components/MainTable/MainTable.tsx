@@ -26,6 +26,7 @@ export const MainTable = ({ content, setContent }: Icontent) => {
       const index = category.keywords.findIndex((x) => x.id === responseId);
       if (index !== -1) {
         category.keywords.splice(index, 1);
+        return;
       }
     });
     setContent(copiedState);
