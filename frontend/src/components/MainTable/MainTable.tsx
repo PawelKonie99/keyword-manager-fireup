@@ -6,18 +6,17 @@ import { Category } from "../../interfaces/category";
 import { deleteCategory } from "../../services/deleteCategory";
 import { deleteKeyword } from "../../services/deleteKeyword";
 import { AddKeywordForm } from "../AddKeywordForm/AddKeywordForm";
-import { postNewKeyword } from "../../services/postNewKeyword";
 
 export const MainTable = ({ control, setControl }: any) => {
-  const [content, setContent] = useState<Category[]>();
+  const [content, setContent] = useState<Category[]>([]);
 
   useEffect(() => {
     getContent();
   }, [control]);
 
   const getContent = async (): Promise<void> => {
-    const data = await getAll();
-    setContent(data.data);
+    const { data } = await getAll();
+    setContent(data);
   };
 
   const handleRemoveCategory = async (categoryId: string) => {
@@ -37,28 +36,22 @@ export const MainTable = ({ control, setControl }: any) => {
         <TrS>
           <ThS borderValue="2px">Categories</ThS>
           <ThS paddingValue="3rem">Keywords</ThS>
-          <ThS></ThS>
+          <ThS />
         </TrS>
       </TheadS>
-      {content?.map((category) => (
-        <TbodyS key={category.id}>
+      {content.map(({ id, categoryName, keywords }) => (
+        <TbodyS key={id}>
           <TrS>
-            <TdS cursorValue="pointer" borderValue="2px" onClick={() => handleRemoveCategory(category.id)}>
-              {category.categoryName}
+            <TdS cursorValue="pointer" borderValue="2px" onClick={() => handleRemoveCategory(id)}>
+              {categoryName}
             </TdS>
             <TdS itemProp="flex">
-              {category.keywords?.map((keyword) => (
-                <>
-                  <Keyword
-                    key={keyword.id}
-                    text={keyword.keywordName}
-                    onClick={() => handleRemoveKeyword(keyword.id)}
-                  />
-                </>
+              {keywords.map(({ id, keywordName }) => (
+                <Keyword key={id} text={keywordName} onClick={() => handleRemoveKeyword(id)} />
               ))}
             </TdS>
             <TdS>
-              <AddKeywordForm categoryId={category.id} control={control} setControl={setControl} />
+              <AddKeywordForm categoryId={id} control={control} setControl={setControl} />
             </TdS>
           </TrS>
         </TbodyS>

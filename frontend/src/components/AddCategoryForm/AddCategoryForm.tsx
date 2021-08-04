@@ -7,17 +7,17 @@ import colors from "../../utils/colors";
 
 //todo dodac typy
 export const AddCategoryForm = ({ control, setControl }: any) => {
-  const [newCategory, setNewCategory] = useState("");
+  const [categoryName, newCategoryName] = useState("");
 
   const handleInputText = (event: EventTarget & HTMLInputElement) => {
-    setNewCategory(event.value);
+    newCategoryName(event.value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await postNewCategory(newCategory);
+    await postNewCategory(categoryName);
     setControl(control + 1);
-    setNewCategory("");
+    newCategoryName("");
   };
 
   return (
@@ -29,7 +29,8 @@ export const AddCategoryForm = ({ control, setControl }: any) => {
         borderColor={colors.navy}
         marginRight={"1rem"}
         placeholder={"New Category"}
-        value={newCategory}
+        value={categoryName}
+        //todo change this
         onChange={(event) => handleInputText(event.target)}
       />
       <AddCategory />

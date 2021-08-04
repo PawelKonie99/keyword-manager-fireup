@@ -1,7 +1,7 @@
 export interface Category {
   id: string;
   categoryName: string;
-  keywords?: KeywordsEntity[] | null;
+  keywords: KeywordsEntity[];
 }
 export interface KeywordsEntity {
   id: string;

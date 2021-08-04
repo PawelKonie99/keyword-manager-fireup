@@ -3,29 +3,35 @@ import { v4 as uuidv4 } from "uuid";
 import { InewKeyword } from "../interfaces/serviceInterface";
 
 export const addNewKeyword = (body: InewKeyword) => {
-  if (body.newKeyword === "" || body.newKeyword === undefined) {
+  if (!body.keywordName) {
     return {
       error: "Missing keyword name",
     };
   }
 
   const properCategory = data.find((category) => category.id === body.categoryId);
-  properCategory.keywords.push({ id: uuidv4(), keywordName: body.newKeyword });
+  if (!properCategory) return { error: "Category not found" };
+
+  properCategory.keywords.push({ id: uuidv4(), keywordName: body.keywordName });
 
   return { info: "Keyword added successfully" };
 };
 
 export const removeKeyword = (keywordId: string) => {
-  const dataLength = JSON.stringify(data).length;
+  const initialDataLength = JSON.stringify(data).length;
+
+  // kategoria find by id z argumentu
+  // usuniecie keyworda
+  // sprawdzenie czy instnieje w category data.includes(keywordName)
 
   data.forEach((category) => {
     const index = category.keywords.findIndex((x) => x.id === keywordId);
-    if (index !== undefined && index !== -1) {
+    if (index && index !== -1) {
       category.keywords.splice(index, 1);
     }
   });
 
-  if (JSON.stringify(data).length < dataLength) {
+  if (JSON.stringify(data).length < initialDataLength) {
     return {
       info: "Keyword successfully removed",
     };

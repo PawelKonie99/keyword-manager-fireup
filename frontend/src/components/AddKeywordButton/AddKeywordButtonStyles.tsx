@@ -18,5 +18,5 @@ export const ButtonS = styled.button`
 `;
 
 export const DivS = styled.div`
-  margin: 0rem 1rem 0rem 0rem;
+  margin: 0 1rem 0 0;
 `;

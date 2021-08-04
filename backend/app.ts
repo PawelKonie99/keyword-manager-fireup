@@ -1,5 +1,5 @@
-import * as express from "express";
-import * as cors from "cors";
+const express = require("express");
+const cors = require("cors");
 import { unknownRequest } from "./middlewares/unknowRequest";
 import { categoryRouter } from "./controllers/category";
 import { keywordRouter } from "./controllers/keyword";

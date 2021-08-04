@@ -1,4 +1,4 @@
 export interface InewKeyword {
-  newKeyword: string;
+  keywordName: string;
   categoryId: string;
 }

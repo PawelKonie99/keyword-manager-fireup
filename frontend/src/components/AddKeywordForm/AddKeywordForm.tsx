@@ -7,17 +7,17 @@ import { postNewKeyword } from "../../services/postNewKeyword";
 
 //todo add interafce
 export const AddKeywordForm = ({ categoryId, control, setControl }: any) => {
-  const [newKeyword, setNewKeyword] = useState("");
+  const [keywordName, setKeywordName] = useState("");
 
   const handleInputText = (event: EventTarget & HTMLInputElement) => {
-    setNewKeyword(event.value);
+    setKeywordName(event.value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await postNewKeyword(newKeyword, categoryId);
+    await postNewKeyword(keywordName, categoryId);
     setControl(control + 1);
-    setNewKeyword("");
+    setKeywordName("");
   };
 
   return (
@@ -29,7 +29,7 @@ export const AddKeywordForm = ({ categoryId, control, setControl }: any) => {
         borderColor={colors.white}
         marginRight={"0rem"}
         placeholder={"New keyword"}
-        value={newKeyword}
+        value={keywordName}
         onChange={(event) => handleInputText(event.target)}
       />
       <AddKeywordButton />

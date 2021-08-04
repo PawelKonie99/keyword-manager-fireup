@@ -7,21 +7,20 @@ export const getAllCategories = () => {
   return data;
 };
 
-export const addCategory = async (body: InewCategory) => {
-  if (body.newCategory === "") {
+export const addCategory = async ({ categoryName }: InewCategory) => {
+  if (categoryName === "") {
     return {
       error: "Missing category name",
     };
   }
-  const result: ImuseApi = await axios.get(`https://api.datamuse.com/words?ml=${body.newCategory}&max=10`);
-
+  const result: ImuseApi = await axios.get(`https://api.datamuse.com/words?ml=${categoryName}&max=10`);
   data.push({
     id: uuidv4(),
-    categoryName: body.newCategory,
-    keywords: result.data.map((value) => {
+    categoryName,
+    keywords: result.data.map((item) => {
       return {
         id: uuidv4(),
-        keywordName: value.word,
+        keywordName: item.word,
       };
     }),
   });
@@ -29,12 +28,12 @@ export const addCategory = async (body: InewCategory) => {
 };
 
 export const removeCategory = (categoryId: string) => {
-  const dataLength = data.length;
+  const initialDataLength = data.length;
 
   const index = data.findIndex((x) => x.id === categoryId);
-  if (index !== undefined) data.splice(index, 1);
+  if (index !== -1) data.splice(index, 1);
 
-  if (data.length < dataLength) {
+  if (data.length < initialDataLength) {
     return {
       info: "Category successfully removed",
     };

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerS = styled.section`
-  margin: auto;
-  margin-top: 15rem;
+  margin: 15rem auto auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

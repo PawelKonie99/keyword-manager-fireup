@@ -3,11 +3,11 @@ export interface ImuseApi {
     {
       word: string;
       score: number;
-      tags?: string[] | null;
+      tags: string[];
     }
   ];
 }
 
 export interface InewCategory {
-  newCategory: string;
+  categoryName: string;
 }
