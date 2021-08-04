@@ -34,7 +34,6 @@ export const AddCategoryForm = ({ content, setContent }: Icontent) => {
         marginRight={"1rem"}
         placeholder={"New Category"}
         value={categoryName}
-        //todo change this
         onChange={(event) => handleInputText(event.target)}
       />
       <AddCategory />

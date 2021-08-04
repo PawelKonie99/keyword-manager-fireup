@@ -4,7 +4,7 @@ import { LabelS, InputS } from "./AddInputStyles";
 interface IaddInput {
   value: string;
   onChange: (event: any) => void;
-  backgroundColor?: string;
+  backgroundColor: string;
   color: string;
   padding: string;
   borderColor: string;

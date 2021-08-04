@@ -1,12 +1,8 @@
 import axios from "axios";
-import { Category } from "../interfaces/categoryInterfaces";
+import { Idata } from "../interfaces/categoryInterfaces";
 
 const allDataUri = "/data";
 
-export interface Root {
-  data: Category[];
-}
-
-export const getAll = async (): Promise<Root> => {
+export const getAll = async (): Promise<Idata> => {
   return await axios.get(allDataUri);
 };

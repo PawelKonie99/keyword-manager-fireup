@@ -18,8 +18,6 @@ export const ThS = styled.th<{ borderValue?: string; paddingValue?: string; maxW
   color: ${({ theme }: { theme: Itheme }) => theme.colors.darkBlue};
   padding: 1rem ${(props) => (props.paddingValue ? props.paddingValue : "0.5rem")} 1rem 1rem;
   border-right: ${(props) => (props.borderValue ? props.borderValue : "0px")} solid white;
-  /* min-width: ${(props) => (props.maxWidthValue ? props.maxWidthValue : "")};
-  max-width: 5.1rem; */
   text-align: start;
   font-size: 1.5rem;
 `;

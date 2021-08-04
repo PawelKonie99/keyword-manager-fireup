@@ -10,8 +10,6 @@ app.use(express.static("build"));
 app.use(express.json());
 app.use("/", categoryRouter);
 app.use("/", keywordRouter);
-// app.use("/", usersRouter);
-// app.use("/", loginRouter);
 
 app.use(unknownRequest);
 

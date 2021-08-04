@@ -4,14 +4,9 @@ import { FormS } from "./AddKeywordFormStyles";
 import { AddInput } from "../AddInput/AddInput";
 import { colors } from "../../utils/colors";
 import { postNewKeyword } from "../../services/postNewKeyword";
-import { Icontent } from "../../interfaces/contentInterfaces";
 import { Category } from "../../interfaces/categoryInterfaces";
+import { IaddKeyword } from "../../interfaces/keywordInterfaces";
 
-interface IaddKeyword extends Icontent {
-  categoryId: string;
-}
-
-//todo add interafce
 export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword) => {
   const [keywordName, setKeywordName] = useState("");
 
