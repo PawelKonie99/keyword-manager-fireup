@@ -1,9 +1,7 @@
-import { IloggerError, IloggerInfo } from "../interfaces/loggerInterfaces";
-
-export const info = (message: string): IloggerInfo => {
-  return { info: message };
+export const info = (message: string) => {
+  console.log({ info: message });
 };
 
-export const error = (message: string): IloggerError => {
-  return { error: message };
+export const error = (message: string) => {
+  console.log({ error: message });
 };

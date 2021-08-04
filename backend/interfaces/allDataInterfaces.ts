@@ -1,9 +1,9 @@
 export interface Category {
   id: string;
   categoryName: string;
-  keywords: KeywordsEntity[];
+  keywords: Keyword[];
 }
-export interface KeywordsEntity {
+export interface Keyword {
   id: string;
   keywordName: string;
 }
