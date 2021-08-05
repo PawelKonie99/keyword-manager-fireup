@@ -6,7 +6,7 @@ import { AddInput } from "../AddInput/AddInput";
 import colors from "../../utils/colors";
 import { Icontent } from "../../interfaces/contentInterfaces";
 
-//todo dodac typy
+
 export const AddCategoryForm = ({ content, setContent }: Icontent) => {
   const [categoryName, newCategoryName] = useState("");
 
@@ -17,7 +17,7 @@ export const AddCategoryForm = ({ content, setContent }: Icontent) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newCategory = await postNewCategory(categoryName);
-      console.log(newCategory)
+
     if (newCategory) {
       setContent(content.concat(newCategory));
     }

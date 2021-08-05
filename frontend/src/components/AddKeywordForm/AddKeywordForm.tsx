@@ -18,9 +18,8 @@ export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword)
     event.preventDefault();
     const newKeywords = await postNewKeyword(keywordName, categoryId);
 
-    console.log(newKeywords)
     if (newKeywords) {
-      const newContent = setKeywords(content, categoryId, newKeywords);
+      const newContent = setKeywords({content, categoryId, newKeywords});
       setContent(newContent);
     }
     setKeywordName("");

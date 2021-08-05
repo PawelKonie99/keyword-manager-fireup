@@ -8,5 +8,6 @@ export const CategoryButtonS = styled.button`
   border-radius: 5px;
   font-size: 1.2rem;
   background-color: ${({ theme }: { theme: Itheme }) => theme.colors.navy};
-  color: ${({ theme }: { theme: Itheme }) => theme.colors.white}; ;
+  color: ${({ theme }: { theme: Itheme }) => theme.colors.white}; 
+
 `;

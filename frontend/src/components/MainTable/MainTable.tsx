@@ -23,7 +23,7 @@ export const MainTable = ({ content, setContent }: Icontent) => {
     const newKeywords = await deleteKeyword(keywordId, categoryId);
 
     if (newKeywords) {
-      const newContent = setKeywords(content, categoryId, newKeywords);
+      const newContent = setKeywords({content, categoryId, newKeywords});
       setContent(newContent);
     }
   };

@@ -6,7 +6,6 @@ import { error, info } from "../logger/logger";
 import { IremoveKeyword } from "../interfaces/keywordInterfaces";
 import { Ierror } from "../interfaces/loggerInterfaces";
 
-//todo return
 export const addNewKeyword = ({
   keywordName,
   categoryId,
@@ -45,5 +44,6 @@ export const removeKeyword = ({
   } else {
     return error("Error while removing keyword");
   }
+
   return properCategory?.keywords;
 };
