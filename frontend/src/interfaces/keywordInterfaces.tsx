@@ -10,3 +10,8 @@ export interface IsetKeywords {
    categoryId: string,
     newKeywords: Keyword[]
 }
+
+export interface IKeywordRes {
+  newKeywords: Keyword[];
+  categoryIdResponse: string;
+}

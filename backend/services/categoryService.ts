@@ -6,10 +6,19 @@ import { Category } from "../interfaces/allDataInterfaces";
 import { error, info } from "../logger/logger";
 import { Ierror } from "../interfaces/loggerInterfaces";
 
+/**
+ *
+ * @returns whole data of categories and keywords
+ */
 export const getAllCategories = () => {
   return data;
 };
 
+/**
+ *
+ * @param categoryName name of the new category
+ * @returns new Category object or error
+ */
 export const addCategory = async ({
   categoryName,
 }: InewCategory): Promise<Category | Ierror> => {
@@ -36,6 +45,11 @@ export const addCategory = async ({
   return newCategory;
 };
 
+/**
+ *
+ * @param categoryId id of the category to remove
+ * @returns  if of removed category or error
+ */
 export const removeCategory = (categoryId: string): string | Ierror => {
   const initialDataLength = data.length;
 

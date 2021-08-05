@@ -16,10 +16,12 @@ export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword)
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const newKeywords = await postNewKeyword(keywordName, categoryId);
+    const keywordsRes= await postNewKeyword(keywordName, categoryId);
 
-    if (newKeywords) {
-      const newContent = setKeywords({content, categoryId, newKeywords});
+    console.log(keywordsRes)
+
+    if (keywordsRes) {
+      const newContent = setKeywords({content, categoryId: keywordsRes.categoryIdResponse, newKeywords: keywordsRes.newKeywords});
       setContent(newContent);
     }
     setKeywordName("");

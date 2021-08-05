@@ -3,13 +3,19 @@ import { v4 as uuidv4 } from "uuid";
 import { InewKeyword } from "../interfaces/serviceInterface";
 import { Category, Keyword } from "../interfaces/allDataInterfaces";
 import { error, info } from "../logger/logger";
-import { IremoveKeyword } from "../interfaces/keywordInterfaces";
+import { IremoveKeyword, IKeywordRes } from "../interfaces/keywordInterfaces";
 import { Ierror } from "../interfaces/loggerInterfaces";
 
+/**
+ *
+ * @param keywordId id of the keyword to remove
+ * @param categoryId id of the category that keyword belongs to
+ * @returns array of keywords that belongs to category and categoryId or error
+ */
 export const addNewKeyword = ({
   keywordName,
   categoryId,
-}: InewKeyword): Keyword[] | Ierror => {
+}: InewKeyword): IKeywordRes | Ierror => {
   if (!keywordName) {
     return error("Missing category name");
   }
@@ -20,13 +26,22 @@ export const addNewKeyword = ({
 
   properCategory?.keywords.push(newKeyword);
 
-  return properCategory?.keywords;
+  return {
+    newKeywords: properCategory.keywords,
+    categoryIdResponse: categoryId,
+  };
 };
 
+/**
+ *
+ * @param keywordId id of the keyword to remove
+ * @param categoryId id of the category that keyword belongs to
+ * @returns array of keywords that belongs to category and categoryId or error
+ */
 export const removeKeyword = ({
   keywordId,
   categoryId,
-}: IremoveKeyword): Keyword[] | Ierror => {
+}: IremoveKeyword): IKeywordRes | Ierror => {
   const initialDataLength = JSON.stringify(data).length;
 
   const properCategory = data.find((category) => category.id === categoryId);
@@ -45,5 +60,8 @@ export const removeKeyword = ({
     return error("Error while removing keyword");
   }
 
-  return properCategory?.keywords;
+  return {
+    newKeywords: properCategory.keywords,
+    categoryIdResponse: categoryId,
+  };
 };

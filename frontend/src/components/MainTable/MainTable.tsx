@@ -20,10 +20,10 @@ export const MainTable = ({ content, setContent }: Icontent) => {
   };
 
   const handleRemoveKeyword = async (keywordId: string, categoryId: string) => {
-    const newKeywords = await deleteKeyword(keywordId, categoryId);
+    const {newKeywords, categoryIdResponse} = await deleteKeyword(keywordId, categoryId);
 
     if (newKeywords) {
-      const newContent = setKeywords({content, categoryId, newKeywords});
+      const newContent = setKeywords({content, categoryId: categoryIdResponse, newKeywords});
       setContent(newContent);
     }
   };
