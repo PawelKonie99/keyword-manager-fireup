@@ -1,6 +1,6 @@
 import { Ierror } from "../interfaces/loggerInterfaces";
 
-export const info = (message: string) => {
+export const info = (message: string): void => {
   console.log({ info: message });
 };
 

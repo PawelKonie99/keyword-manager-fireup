@@ -1,4 +1,4 @@
-import { TableS, TheadS, TbodyS, TrS, TdS, ThS } from "./MainTableStyles";
+import { TableS, TheadS, TbodyS, TrS, TdS, ThS, PS } from "./MainTableStyles";
 import { Keyword } from "../Keyword/Keyword";
 import { deleteCategory } from "../../services/deleteCategory";
 import { deleteKeyword } from "../../services/deleteKeyword";
@@ -20,10 +20,10 @@ export const MainTable = ({ content, setContent }: Icontent) => {
   };
 
   const handleRemoveKeyword = async (keywordId: string, categoryId: string) => {
-    const {newKeywords, categoryIdResponse} = await deleteKeyword(keywordId, categoryId);
+    const { newKeywords, categoryIdResponse } = await deleteKeyword(keywordId, categoryId);
 
     if (newKeywords) {
-      const newContent = setKeywords({content, categoryId: categoryIdResponse, newKeywords});
+      const newContent = setKeywords({ content, categoryId: categoryIdResponse, newKeywords });
       setContent(newContent);
     }
   };
@@ -59,6 +59,7 @@ export const MainTable = ({ content, setContent }: Icontent) => {
           </TbodyS>
         ))}
       </TableS>
+      <PS>Click on category or keyword to remove it.</PS>
     </ContainerS>
   );
 };

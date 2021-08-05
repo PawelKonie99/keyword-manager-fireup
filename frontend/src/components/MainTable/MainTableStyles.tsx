@@ -36,3 +36,11 @@ export const TdS = styled.td<{ borderValue?: string; cursorValue?: string }>`
   font-size: 1.4rem;
   cursor: ${(props) => (props.cursorValue ? props.cursorValue : "")};
 `;
+
+export const PS = styled.p`
+  margin: 0.6rem;
+  text-align: center;
+  color: ${({ theme }: { theme: Itheme }) => theme.colors.navy};
+  font-weight: 600;
+  font-size: 1.1rem;
+`;

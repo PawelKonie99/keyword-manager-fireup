@@ -10,7 +10,7 @@ import { Ierror } from "../interfaces/loggerInterfaces";
  *
  * @returns whole data of categories and keywords
  */
-export const getAllCategories = () => {
+export const getAllCategories = (): Category[] => {
   return data;
 };
 
@@ -19,16 +19,12 @@ export const getAllCategories = () => {
  * @param categoryName name of the new category
  * @returns new Category object or error
  */
-export const addCategory = async ({
-  categoryName,
-}: InewCategory): Promise<Category | Ierror> => {
+export const addCategory = async ({ categoryName }: InewCategory): Promise<Category | Ierror> => {
   if (!categoryName) {
     return error("Missing category name");
   }
 
-  const result: ImuseApi = await axios.get(
-    `https://api.datamuse.com/words?ml=${categoryName}&max=10`
-  );
+  const result: ImuseApi = await axios.get(`https://api.datamuse.com/words?ml=${categoryName}&max=10`);
 
   const newCategory: Category = {
     id: uuidv4(),
