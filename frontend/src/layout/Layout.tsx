@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { theme } from "../utils/theme";
+import { Itheme, theme } from "../utils/theme";
+
 
 const GlobalStyles = createGlobalStyle`
 html,
@@ -7,7 +8,7 @@ body {
   margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #c4c4c4;
+    background-color: ${({ theme }: { theme: Itheme }) => theme.colors.offWhite};
 }
 * {
   margin: 0;

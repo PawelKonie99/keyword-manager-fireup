@@ -28,7 +28,7 @@ export const AddCategoryForm = ({ content, setContent }: Icontent) => {
     <FormS onSubmit={(event) => handleSubmit(event)}>
       <AddInput
         color={colors.navy}
-        backgroundColor={"#C4C4C4"}
+        backgroundColor={colors.offWhite}
         padding={"1rem"}
         borderColor={colors.navy}
         marginRight={"1rem"}
