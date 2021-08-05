@@ -1,10 +1,10 @@
 import { MainTable } from "../../components/MainTable/MainTable";
 import { useEffect, useState } from "react";
-import { Category } from "../../interfaces/categoryInterfaces";
+import { Icategory } from "../../interfaces/categoryInterfaces";
 import { getAll } from "../../services/getAllData";
 
 export const MainPage = () => {
-  const [content, setContent] = useState<Category[]>([]);
+  const [content, setContent] = useState<Icategory[]>([]);
 
   useEffect(() => {
     getContent();

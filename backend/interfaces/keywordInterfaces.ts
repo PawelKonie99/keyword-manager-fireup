@@ -1,11 +1,11 @@
-import { Keyword } from "./allDataInterfaces";
+import { Ikeyword } from "./allDataInterfaces";
 
 export interface IremoveKeyword {
   keywordId: string;
   categoryId: string;
 }
 
-export interface IKeywordRes {
-  newKeywords: Keyword[];
+export interface IkeywordRes {
+  newKeywords: Ikeyword[];
   categoryIdResponse: string;
 }

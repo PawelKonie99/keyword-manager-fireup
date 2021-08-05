@@ -2,7 +2,7 @@ import axios from "axios";
 import { data } from "../allData";
 import { ImuseApi, InewCategory } from "../interfaces/categoryInterfaces";
 import { v4 as uuidv4 } from "uuid";
-import { Category } from "../interfaces/allDataInterfaces";
+import { Icategory } from "../interfaces/allDataInterfaces";
 import { error, info } from "../logger/logger";
 import { Ierror } from "../interfaces/loggerInterfaces";
 
@@ -10,7 +10,7 @@ import { Ierror } from "../interfaces/loggerInterfaces";
  *
  * @returns whole data of categories and keywords
  */
-export const getAllCategories = (): Category[] => {
+export const getAllCategories = (): Icategory[] => {
   return data;
 };
 
@@ -19,14 +19,14 @@ export const getAllCategories = (): Category[] => {
  * @param categoryName name of the new category
  * @returns new Category object or error
  */
-export const addCategory = async ({ categoryName }: InewCategory): Promise<Category | Ierror> => {
+export const addCategory = async ({ categoryName }: InewCategory): Promise<Icategory | Ierror> => {
   if (!categoryName) {
     return error("Missing category name");
   }
 
   const result: ImuseApi = await axios.get(`https://api.datamuse.com/words?ml=${categoryName}&max=10`);
 
-  const newCategory: Category = {
+  const newCategory: Icategory = {
     id: uuidv4(),
     categoryName,
     keywords: result.data.map((item) => {

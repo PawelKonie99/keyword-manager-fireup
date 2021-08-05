@@ -1,6 +1,6 @@
-import { Category } from "./interfaces/allDataInterfaces";
+import { Icategory } from "./interfaces/allDataInterfaces";
 
-export const data: Category[] = [
+export const data: Icategory[] = [
   {
     id: "2",
     categoryName: "cars",

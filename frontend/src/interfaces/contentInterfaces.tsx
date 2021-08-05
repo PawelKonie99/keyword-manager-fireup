@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
-import { Category } from "./categoryInterfaces";
+import { Icategory } from "./categoryInterfaces";
 
 export interface Icontent {
-  content: Category[];
-  setContent: Dispatch<SetStateAction<Category[]>>;
+  content: Icategory[];
+  setContent: Dispatch<SetStateAction<Icategory[]>>;
 }
 
 export interface IaddInput {

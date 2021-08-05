@@ -7,7 +7,7 @@ import { DivS } from "../../pages/MainPage/MainPageStyles";
 import { AddCategoryForm } from "../AddCategoryForm/AddCategoryForm";
 import { ContainerS } from "../../pages/MainPage/MainPageStyles";
 import { Icontent } from "../../interfaces/contentInterfaces";
-import { Category } from "../../interfaces/categoryInterfaces";
+import { Icategory } from "../../interfaces/categoryInterfaces";
 import { setKeywords } from "../../helpers/setKeywords";
 
 export const MainTable = ({ content, setContent }: Icontent) => {
@@ -15,7 +15,7 @@ export const MainTable = ({ content, setContent }: Icontent) => {
     const responseId = await deleteCategory(categoryId);
 
     const copiedState = JSON.parse(JSON.stringify(content));
-    const newCategories = copiedState.filter((category: Category) => category.id !== responseId);
+    const newCategories = copiedState.filter((category: Icategory) => category.id !== responseId);
     setContent(newCategories);
   };
 

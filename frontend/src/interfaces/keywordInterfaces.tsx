@@ -1,4 +1,4 @@
-import { Category, Keyword } from "./categoryInterfaces";
+import { Icategory, Ikeyword } from "./categoryInterfaces";
 import { Icontent } from "./contentInterfaces";
 
 export interface IaddKeyword extends Icontent {
@@ -6,12 +6,12 @@ export interface IaddKeyword extends Icontent {
 }
 
 export interface IsetKeywords {
-  content: Category[],
-   categoryId: string,
-    newKeywords: Keyword[]
+  content: Icategory[];
+  categoryId: string;
+  newKeywords: Ikeyword[];
 }
 
-export interface IKeywordRes {
-  newKeywords: Keyword[];
+export interface IkeywordRes {
+  newKeywords: Ikeyword[];
   categoryIdResponse: string;
 }

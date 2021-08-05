@@ -1,9 +1,9 @@
-import { Category } from "../interfaces/categoryInterfaces";
+import { Icategory } from "../interfaces/categoryInterfaces";
 import { IsetKeywords } from "../interfaces/keywordInterfaces";
 
-export const setKeywords = ({content, categoryId, newKeywords}: IsetKeywords): Category[] => {
-  const copiedState: Category[] = JSON.parse(JSON.stringify(content));
-  const properCategory = copiedState.find((category: Category) => category.id === categoryId);
+export const setKeywords = ({ content, categoryId, newKeywords }: IsetKeywords): Icategory[] => {
+  const copiedState: Icategory[] = JSON.parse(JSON.stringify(content));
+  const properCategory = copiedState.find((category: Icategory) => category.id === categoryId);
   if (properCategory) {
     properCategory.keywords = newKeywords;
   }

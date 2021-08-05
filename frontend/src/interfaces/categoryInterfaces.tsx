@@ -1,13 +1,13 @@
-export interface Category {
+export interface Icategory {
   id: string;
   categoryName: string;
-  keywords: Keyword[];
+  keywords: Ikeyword[];
 }
-export interface Keyword {
+export interface Ikeyword {
   id: string;
   keywordName: string;
 }
 
 export interface Idata {
-  data: Category[];
+  data: Icategory[];
 }
