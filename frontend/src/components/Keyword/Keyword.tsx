@@ -1,10 +1,7 @@
+import { IkeywordButton } from "../../interfaces/contentInterfaces";
 import { KeywordS } from "./KeywordStyles";
 
-interface Iitem {
-  text: string;
-  onClick: () => void;
-}
 
-export const Keyword = ({ text, onClick }: Iitem) => {
+export const Keyword = ({ text, onClick }: IkeywordButton) => {
   return <KeywordS onClick={onClick}>{text}</KeywordS>;
 };

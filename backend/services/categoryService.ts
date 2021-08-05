@@ -4,34 +4,39 @@ import { ImuseApi, InewCategory } from "../interfaces/categoryInterfaces";
 import { v4 as uuidv4 } from "uuid";
 import { Category } from "../interfaces/allDataInterfaces";
 import { error, info } from "../logger/logger";
+import { Ierror } from "../interfaces/loggerInterfaces";
 
 export const getAllCategories = () => {
   return data;
 };
 
-export const addCategory = async ({ categoryName }: InewCategory): Promise<Category> => {
+export const addCategory = async ({
+  categoryName,
+}: InewCategory): Promise<Category | Ierror> => {
   if (!categoryName) {
-    error("Missing category name");
-  } else {
-    const result: ImuseApi = await axios.get(`https://api.datamuse.com/words?ml=${categoryName}&max=10`);
-
-    const newCategory: Category = {
-      id: uuidv4(),
-      categoryName,
-      keywords: result.data.map((item) => {
-        return {
-          id: uuidv4(),
-          keywordName: item.word,
-        };
-      }),
-    };
-    data.push(newCategory);
-
-    return newCategory;
+    return error("Missing category name");
   }
+
+  const result: ImuseApi = await axios.get(
+    `https://api.datamuse.com/words?ml=${categoryName}&max=10`
+  );
+
+  const newCategory: Category = {
+    id: uuidv4(),
+    categoryName,
+    keywords: result.data.map((item) => {
+      return {
+        id: uuidv4(),
+        keywordName: item.word,
+      };
+    }),
+  };
+  data.push(newCategory);
+
+  return newCategory;
 };
 
-export const removeCategory = (categoryId: string): string => {
+export const removeCategory = (categoryId: string): string | Ierror => {
   const initialDataLength = data.length;
 
   const index = data.findIndex((category) => category.id === categoryId);
@@ -40,7 +45,8 @@ export const removeCategory = (categoryId: string): string => {
   if (data.length < initialDataLength) {
     info("Category successfully removed");
   } else {
-    error("Error while removing category");
+    return error("Error while removing category");
   }
+
   return categoryId;
 };

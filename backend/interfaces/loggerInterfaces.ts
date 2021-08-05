@@ -1,7 +1,3 @@
-export interface IloggerInfo {
-  info: string;
-}
-
-export interface IloggerError {
+export interface Ierror {
   error: string;
 }

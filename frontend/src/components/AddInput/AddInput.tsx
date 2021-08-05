@@ -1,16 +1,7 @@
-import React from "react";
+import { IaddInput } from "../../interfaces/contentInterfaces";
 import { LabelS, InputS } from "./AddInputStyles";
 
-interface IaddInput {
-  value: string;
-  onChange: (event: any) => void;
-  backgroundColor: string;
-  color: string;
-  padding: string;
-  borderColor: string;
-  marginRight: string;
-  placeholder: string;
-}
+
 
 export const AddInput = ({
   value,

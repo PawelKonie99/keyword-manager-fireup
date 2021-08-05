@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { postNewCategory } from "../../services/postNewCategory";
 import { AddCategory } from "../AddCategoryButton/AddCategoryButton";
 import { FormS } from "./AddCategoryFormStyles";
@@ -10,14 +10,14 @@ import { Icontent } from "../../interfaces/contentInterfaces";
 export const AddCategoryForm = ({ content, setContent }: Icontent) => {
   const [categoryName, newCategoryName] = useState("");
 
-  const handleInputText = ({ value }: EventTarget & HTMLInputElement) => {
+  const handleInputText = (value: SetStateAction<string>) => {
     newCategoryName(value);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const newCategory = await postNewCategory(categoryName);
-
+      console.log(newCategory)
     if (newCategory) {
       setContent(content.concat(newCategory));
     }
@@ -34,7 +34,7 @@ export const AddCategoryForm = ({ content, setContent }: Icontent) => {
         marginRight={"1rem"}
         placeholder={"New Category"}
         value={categoryName}
-        onChange={(event) => handleInputText(event.target)}
+        onChange={(event) => handleInputText(event.target.value)}
       />
       <AddCategory />
     </FormS>

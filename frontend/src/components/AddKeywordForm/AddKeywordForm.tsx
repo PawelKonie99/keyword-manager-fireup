@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import { AddKeywordButton } from "../AddKeywordButton/AddKeywordButton";
 import { FormS } from "./AddKeywordFormStyles";
 import { AddInput } from "../AddInput/AddInput";
@@ -10,7 +10,7 @@ import { setKeywords } from "../../helpers/setKeywords";
 export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword) => {
   const [keywordName, setKeywordName] = useState("");
 
-  const handleInputText = ({ value }: EventTarget & HTMLInputElement) => {
+  const handleInputText = (value: SetStateAction<string>) => {
     setKeywordName(value);
   };
 
@@ -18,6 +18,7 @@ export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword)
     event.preventDefault();
     const newKeywords = await postNewKeyword(keywordName, categoryId);
 
+    console.log(newKeywords)
     if (newKeywords) {
       const newContent = setKeywords(content, categoryId, newKeywords);
       setContent(newContent);
@@ -35,7 +36,7 @@ export const AddKeywordForm = ({ categoryId, content, setContent }: IaddKeyword)
         marginRight={"0rem"}
         placeholder={"New keyword"}
         value={keywordName}
-        onChange={(event) => handleInputText(event.target)}
+        onChange={(event) => handleInputText(event.target.value)}
       />
       <AddKeywordButton />
     </FormS>
